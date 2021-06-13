@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#square {
+  margin-right: 2%;
+  background-color: rgb(148, 132, 112);
+  cursor: pointer;
+}
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#display {
+  margin-left: 10%;
+  color: white;
+  /* text-align: center; */
+  font-size: larger;
+  font-style: italic;
+  font-weight: 600;
+}
+.button {
+  width: 112px;
+  height: 58px;
+  border: solid 1px #9ac404;
+  background-color: #d9f14cdc;
+  text-align: center;
+  border-radius: 25%;
+  line-height: 58px;
+  cursor: pointer;
+}
+
+.anim {
+  visibility: hidden;
+}
+.anim.dora {
+  visibility: inherit;
+  /* background-image: './dora-intro.png'; */
+  position: relative;
+  animation: mymove 2s;
+  animation-direction: normal;
+}
+
+@keyframes mymove {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 250px;
+  }
+}
