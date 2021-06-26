@@ -13,7 +13,7 @@ body {
 }
 #display {
   margin-left: 10%;
-  color: white;
+  color: black;
   /* text-align: center; */
   font-size: larger;
   font-style: italic;
@@ -29,23 +29,42 @@ body {
   line-height: 58px;
   cursor: pointer;
 }
-
-.anim {
-  visibility: hidden;
+.highlight {
+  transform: translateY(1px);
+  box-shadow: 0 15px rgb(3, 120, 216);
 }
-.anim.dora {
+/* .anim {
+  visibility: hidden;
+} */
+/* .dora {
   visibility: inherit;
-  /* background-image: './dora-intro.png'; */
+  background-image: './dora-intro.png';
   position: relative;
+  animation: mymove 2s infinite;
+  animation-direction: normal;
+} */
+
+#anim {
+  position: fixed;
+  /* top: 0; */
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* display: none; */
+}
+#anim.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: mymove 2s;
   animation-direction: normal;
+  /* transform: translate(1000px, 0px); */
 }
-
 @keyframes mymove {
   from {
     left: 0px;
   }
   to {
-    left: 250px;
+    left: 1000px;
   }
 }

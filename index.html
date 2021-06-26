@@ -9,23 +9,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body background=".\Nature.jpg">
-    <button class="button" onclick="displayImage()">Start</button>
-    <!-- <marquee>
-      <img src=".\dora-bujji.jpg" alt="" />
-    </marquee> -->
+    <div>
+      <button class="button" id="start" onclick="displayImage()">Start</button>
+    </div>
+    <!-- <img src=".\dora-bujji.jpg" alt="" /> -->
+    <!-- </marquee> -->
+    -->
     <div id="display">
       Let’s Start our way to Home friends.........................!! Bujji and I
       are ready .... Can you all please help us reach home ?? Let’s start the
       first phase
     </div>
     <div id="full"></div>
-    <button class="button" onclick="check()">Next</button>
-    <div class="anim">
+    <div id="quiz"></div>
+    <div id="words"></div>
+    <!-- <select name="options" id="answers">
+      <option></option>
+      <option></option>
+      <option></option>
+      <option></option>
+    </select> -->
+    <button class="button" id="button" onclick="check()">Next</button>
+    <div id="anim">
       <img class="dora" src="./dora-intro.png" alt="" />
     </div>
-    <!-- <footer>
-     
-    </footer> -->
+
     <script src="app.js"></script>
   </body>
 </html>
