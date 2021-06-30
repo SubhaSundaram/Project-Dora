@@ -8,32 +8,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body background=".\Nature.jpg">
-    <div>
-      <button class="button" id="start" onclick="displayImage()">Start</button>
-    </div>
-    <!-- <img src=".\dora-bujji.jpg" alt="" /> -->
-    <!-- </marquee> -->
-    -->
-    <div id="display">
-      Let’s Start our way to Home friends.........................!! Bujji and I
-      are ready .... Can you all please help us reach home ?? Let’s start the
-      first phase
-    </div>
-    <div id="full"></div>
-    <div id="quiz"></div>
-    <div id="words"></div>
-    <!-- <select name="options" id="answers">
+  <body>
+    <div class="container">
+      <div>
+        <button class="button" id="start" onclick="displayImage()">
+          Start
+        </button>
+      </div>
+      <!-- <img src=".\dora-bujji.jpg" alt="" /> -->
+      <!-- </marquee> -->
+
+      <div id="display">
+        <h1>
+          Let’s Start our way to Home friends.........................!! Bujji
+          and I are ready .... Can you all please help us reach home ?? Let’s
+          start the first phase
+        </h1>
+      </div>
+      <div id="full"></div>
+      <div id="quiz"></div>
+      <div id="words"></div>
+      <!-- <select name="options" id="answers">
       <option></option>
       <option></option>
       <option></option>
       <option></option>
     </select> -->
-    <button class="button" id="button" onclick="check()">Next</button>
-    <div id="anim">
-      <img class="dora" src="./dora-intro.png" alt="" />
+      <div>
+        <button class="button" id="button" onclick="check()">Next</button>
+      </div>
+      <div id="anim">
+        <img class="dora" id="dora" src="./dora-intro.png" alt="" />
+      </div>
+      <script src="app.js"></script>
     </div>
-
-    <script src="app.js"></script>
   </body>
 </html>

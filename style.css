@@ -2,22 +2,35 @@
   margin: 0;
   padding: 0;
 }
+.container {
+  align-content: center;
+}
+button {
+  align-self: center;
+}
 #square {
   margin-right: 2%;
-  background-color: rgb(148, 132, 112);
+  background-color: rgb(167, 65, 180);
   cursor: pointer;
 }
 body {
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 #display {
-  margin-left: 10%;
+  margin-left: 30%;
+  align-items: center;
   color: black;
   /* text-align: center; */
+  line-height: 65px;
   font-size: larger;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 900;
+}
+#full {
+  margin-left: 25%;
+  align-items: center;
 }
 .button {
   width: 112px;
@@ -33,24 +46,13 @@ body {
   transform: translateY(1px);
   box-shadow: 0 15px rgb(3, 120, 216);
 }
-/* .anim {
-  visibility: hidden;
-} */
-/* .dora {
-  visibility: inherit;
-  background-image: './dora-intro.png';
-  position: relative;
-  animation: mymove 2s infinite;
-  animation-direction: normal;
-} */
 
 #anim {
   position: fixed;
-  /* top: 0; */
   width: fit-content;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.8);
-  /* display: none; */
+  top: 65%;
 }
 #anim.active {
   display: flex;

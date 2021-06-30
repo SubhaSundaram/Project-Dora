@@ -26,13 +26,16 @@ function displayArray() {
   checkEquals()
 }
 function displayImage() {
+  document.getElementById('start').style.display = 'none'
+  document.body.style.backgroundImage = "url('./Nature.jpg')"
+
+  level = 1
   n++
   full.innerHTML = ''
   console.log(selectedImg.length)
   if (n > 3) {
-    anim.classList.add('active')
-    setTimeout(quizCheck, 2000)
-  } else {
+    return
+  } else
     for (let i = 0; i < n; i++) {
       let rand = Math.ceil(Math.random() * 20)
       let imgs = 'images/super-' + rand + '.png'
@@ -42,66 +45,61 @@ function displayImage() {
       selectedImg.push(imgs)
       display.appendChild(image)
     }
-    console.log('Images displayed in this level' + selectedImg)
-    setTimeout(displayArray, 500)
-  }
+  console.log('Images displayed in this level' + selectedImg)
+  setTimeout(displayArray, 2000)
 }
+
 function checkEquals() {
   let imagesview = document.querySelectorAll('img')
   imagesview.forEach((image) => {
     //Looping through images
     image.addEventListener('click', (e) => {
       image.classList.add('highlight')
-      checkimg.push(image.src.substring(image.src.indexOf('/') + 17))
-      // checkimg.push(image.src.split('/')[(3, 4)])
+      checkimg.push(image.src.substring(image.src.indexOf('/') + 17)) //adding selected images into an array
+
       console.log('Total pushed images' + checkimg)
     })
   })
 }
 function check() {
-  if (level == 3) {
+  if (level == 1) {
+    let x = compare(selectedImg, checkimg) //comparing the random images with the selected one
+    if (x == true) {
+      // anim.classList.add('.active')
+      displayImage()
+      console.log('Images are same')
+    } else {
+      levelFail() //Caught by Sniper
+    }
+    if (n > 3) {
+      anim.classList.add('active')
+      setTimeout(quizCheck, 2000) //Once level is cleared, routing  to next level
+    } else return
+  }
+  if (level == 2) {
     if (rightans >= 2) {
       console.log('Level 2 completed')
       anim.classList.add('active')
       spellCheck()
       return
     } else {
-      console.log('Level 2 failed')
-      let fail = document.createElement('img')
-      let img = './dora-caught.png'
-      fail.setAttribute('src', img)
-      display.appendChild(fail)
+      levelFail()
     }
   }
-  if (level == 4) {
+  if (level == 3) {
     if (sameWord >= 3) {
       console.log('Level 3 completed')
       anim.classList.add('active')
       return
     } else {
-      console.log('Level 2 failed')
-      let fail = document.createElement('img')
-      let img = './dora-caught.png'
-      fail.setAttribute('src', img)
-      display.appendChild(fail)
+      levelFail()
     }
   }
-  console.log('check function')
-  let x = compare(selectedImg, checkimg)
-  if (x == true) {
-    // anime.classList.add('.dora')
-    displayImage()
-    console.log('Images are same')
-  } else {
-    console.log('FALSE')
-    let fail = document.createElement('img')
-    let img = './dora-caught.png'
-    fail.setAttribute('src', img)
-    display.appendChild(fail)
-  }
+  // console.log('check function')
 }
 
 function compare(arr1, arr2) {
+  console.log('Comparing arr1 and arr2')
   let count = 0
   for (let i = 0; i < arr1.length && arr2.length; i++) {
     if (arr1[i] == arr2[i]) count++
@@ -110,8 +108,9 @@ function compare(arr1, arr2) {
     return true
   }
 }
-
+//LEVEL 2
 function quizCheck() {
+  document.body.style.backgroundImage = "url('./dora-intro.png')"
   anim.classList.remove('active')
   let q = Math.ceil(Math.random() * 10)
   console.log('Welcome to LEVEL 2')
@@ -135,7 +134,7 @@ function quizCheck() {
         select.appendChild(option)
       }
 
-      var label = document.createElement('label')
+      var label = document.createElement('h1')
       label.innerHTML = res.data.results[q].question
       quesCount++
       label.htmlFor = 'questions'
@@ -159,16 +158,18 @@ function checkAnswer(correctanswer) {
       }
       if (quesCount <= 3) quizCheck()
       else {
-        level = 3
+        level = 2
         return
       }
       document.getElementById('full').innerHTML = 'Level 2 completed'
     })
   })
-  // console.log('No of right answers' + rightans)
 }
 
+//LEVEL 3
 function spellCheck() {
+  document.getElementById('full').innerHTML = ''
+  document.body.style.backgroundImage = "url('./pexels-pixabay-259915.jpg')"
   anim.classList.remove('active')
   document.getElementById('quiz').innerHTML =
     'Welcome to Level 3..... Find the correct word for the scrambled word displayd here.. A clue for you-  They are friends of Dora'
@@ -217,9 +218,12 @@ function spellCheck() {
     }
   }
 }
-// if (sameWord >= 3) anim.classList.add('active')
-// else {
-//   let fail = document.createElement('img')
-//   let img = './dora-caught.png'
-//   fail.setAttribute('src', img)
-// display.appendChild(fail)
+//
+function levelFail() {
+  let fail = document.createElement('h3')
+
+  let doraimg = document.getElementById('dora')
+  let img = './dora-caught.png'
+  doraimg.setAttribute('src', img)
+  // anim.appendChild(fail)
+}
