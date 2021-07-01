@@ -15,8 +15,12 @@ function displayArray() {
   console.log('FULL ARRAY')
   display.innerHTML = ''
   // images = []
+  let imgs
   for (let i = 1; i <= 20; i++) {
-    let imgs = 'images/super-' + i + '.png'
+    imgs = 'images/super-0' + i + '.png'
+    if (i > 9) {
+      imgs = 'images/super-' + i + '.png'
+    }
     let image = document.createElement('img')
     image.setAttribute('id', 'square')
     image.setAttribute('src', imgs)
@@ -28,7 +32,7 @@ function displayArray() {
 function displayImage() {
   document.getElementById('start').style.display = 'none'
   document.body.style.backgroundImage = "url('./Nature.jpg')"
-
+  let imgs
   level = 1
   n++
   full.innerHTML = ''
@@ -38,7 +42,11 @@ function displayImage() {
   } else
     for (let i = 0; i < n; i++) {
       let rand = Math.ceil(Math.random() * 20)
-      let imgs = 'images/super-' + rand + '.png'
+      if (rand < 10) {
+        imgs = 'images/super-0' + rand + '.png'
+      } else {
+        imgs = 'images/super-' + rand + '.png'
+      }
       console.log(imgs)
       let image = document.createElement('img')
       image.setAttribute('src', imgs)
@@ -55,8 +63,11 @@ function checkEquals() {
     //Looping through images
     image.addEventListener('click', (e) => {
       image.classList.add('highlight')
-      checkimg.push(image.src.substring(image.src.indexOf('/') + 17)) //adding selected images into an array
-
+      // checkimg.push(image.src.substring(image.src.indexOf('/') + 17)) //adding selected images into an array
+      console.log(image.src)
+      checkimg.push(
+        image.src.substring(image.src.length - 19, image.src.length),
+      )
       console.log('Total pushed images' + checkimg)
     })
   })
@@ -86,15 +97,7 @@ function check() {
       levelFail()
     }
   }
-  if (level == 3) {
-    if (sameWord >= 3) {
-      console.log('Level 3 completed')
-      anim.classList.add('active')
-      return
-    } else {
-      levelFail()
-    }
-  }
+
   // console.log('check function')
 }
 
@@ -110,11 +113,11 @@ function compare(arr1, arr2) {
 }
 //LEVEL 2
 function quizCheck() {
-  document.body.style.backgroundImage = "url('./dora-intro.png')"
+  document.body.style.backgroundImage = "url('./dora-quiz.jpg')"
   anim.classList.remove('active')
   let q = Math.ceil(Math.random() * 10)
-  console.log('Welcome to LEVEL 2')
-  document.getElementById('full').innerHTML = 'Welcome to Level 2'
+  // console.log('Welcome to LEVEL 2')
+  // document.getElementById('full').innerHTML = 'Welcome to Level 2'
   axios
     .get('https://opentdb.com/api.php?amount=10&category=19&difficulty=easy')
     .then((res) => {
@@ -174,6 +177,7 @@ function spellCheck() {
   document.getElementById('quiz').innerHTML =
     'Welcome to Level 3..... Find the correct word for the scrambled word displayd here.. A clue for you-  They are friends of Dora'
   level = 3
+
   var WORDS = ['Diego', 'Benny', 'Tico', 'Backpack']
   var SCRAMBLED = ['egiod', 'ynenb', 'oict', 'pbakckca']
 
@@ -183,7 +187,6 @@ function spellCheck() {
   words.innerHTML = randomWord
 
   wordcount++
-  // alert(randomWord);
   var input = document.createElement('input')
   input.setAttribute('type', 'text')
   input.setAttribute('id', 'ans')
@@ -192,11 +195,6 @@ function spellCheck() {
   full.appendChild(input)
   full.appendChild(button)
 
-  // const img = document.createElement('img')
-  // let image = './dora-intro.png'
-  // img.src = image
-  // bodyContainer.appendChild(img)
-  // bodyContainer.appendChild(button)
   button.onclick = function () {
     let inputVal = document.getElementById('ans').value
     // let inputVal = input.value
@@ -213,17 +211,28 @@ function spellCheck() {
     }
     if (wordcount < 5) spellCheck()
     else {
-      level = 4
-      return
+      if (sameWord >= 3) {
+        console.log('Level 3 completed')
+        document.getElementById('quiz').innerHTML =
+          'Hurray....!! We reached Home .... Thank you friends for helping me all along the way'
+        anim.classList.add('active')
+        document.body.style.backgroundImage = "url('./Dora-final.jpg')"
+        return
+      } else {
+        levelFail()
+      }
+      // anim.classList.remove('active')
     }
   }
 }
 //
 function levelFail() {
-  let fail = document.createElement('h3')
-
   let doraimg = document.getElementById('dora')
-  let img = './dora-caught.png'
-  doraimg.setAttribute('src', img)
-  // anim.appendChild(fail)
+  doraimg.setAttribute('src', '')
+  // let img = './dora-caught.png'
+  document.getElementById('full').innerHTML = ''
+  document.getElementById('quiz').innerHTML = ''
+  document.getElementById('words').innerHTML = ''
+  document.getElementById('button').style.display = 'none'
+  document.body.style.backgroundImage = "url('./dora-caught.png')"
 }

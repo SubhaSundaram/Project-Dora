@@ -5,21 +5,26 @@
 .container {
   align-content: center;
 }
-button {
-  align-self: center;
-}
 #square {
   margin-right: 2%;
-  background-color: rgb(167, 65, 180);
+  background-color: rgb(240, 210, 77);
   cursor: pointer;
 }
 body {
+  background-color: bisque;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+#quiz {
+  font-size: xx-large;
+  font-weight: 900;
+}
+#ans {
+  size: 50%;
+}
 #display {
-  margin-left: 30%;
+  margin-left: 5%;
   align-items: center;
   color: black;
   /* text-align: center; */
@@ -35,6 +40,9 @@ body {
 .button {
   width: 112px;
   height: 58px;
+  margin-left: 50%;
+  margin-top: 10%;
+  margin-bottom: 10%;
   border: solid 1px #9ac404;
   background-color: #d9f14cdc;
   text-align: center;
@@ -46,13 +54,16 @@ body {
   transform: translateY(1px);
   box-shadow: 0 15px rgb(3, 120, 216);
 }
-
+#dora {
+  height: 150px;
+  width: 250px;
+}
 #anim {
   position: fixed;
   width: fit-content;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 65%;
+  top: 70%;
 }
 #anim.active {
   display: flex;
