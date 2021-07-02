@@ -18,6 +18,7 @@ let sameWord = 1
 let selectedImg = []
 let quesCount = 1
 let wordcount = 1
+let i = 0
 let checkimg = []
 let anim = document.getElementById('anim')
 let n = 1
@@ -226,7 +227,8 @@ function spellCheck() {
   scramble.appendChild(check)
 
   check.onclick = function () {
-    let inputVal = document.getElementById('ans').value
+    let inputVal = document.getElementsByClassName('input-field')[i].value
+    i++
     // let inputVal = input.value
     console.log(inputVal)
     if (inputVal == WORDS[randomNumber]) {
@@ -263,8 +265,8 @@ function levelFail() {
   anim.style.display = 'none'
   document.getElementById('full').innerHTML = ''
   document.getElementById('quiz').innerHTML = ''
-  document.getElementById('words').style.visibility = 'hidden'
-  document.getElementById('scramble').innerHTML = ''
+  document.getElementById('words').innerHTML = ''
+  document.getElementById('scramble').style.visibility = 'hidden'
   document.getElementById('level').innerHTML = 'Oh You lost it.....!!'
   document.getElementById('button').style.display = 'none'
   document.body.style.backgroundImage = "url('./dora-caught.png')"
