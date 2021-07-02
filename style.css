@@ -7,7 +7,8 @@
 }
 #square {
   margin-right: 2%;
-  background-color: rgb(240, 210, 77);
+  /* background-color: rgb(214, 238, 148); */
+  background-color: bisque;
   cursor: pointer;
 }
 body {
@@ -16,6 +17,35 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+input.input-field {
+  border: 2px solid #212121;
+  color: #212121;
+  min-width: 200px;
+  min-height: 70%;
+  padding: 6px 12px;
+  display: block;
+  margin-top: 6em;
+  margin-left: 6rem;
+  background-color: black;
+  color: aliceblue;
+  /* width: 100%; */
+}
+
+#answers {
+  margin-inline-start: 8px;
+  margin-inline-end: 8px;
+  padding-block-start: 0.7em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  background-color: black;
+  color: white;
+}
+#color-overlay {
+  opacity: 0.8;
+  text-align: center;
+  color: white;
+}
 #quiz {
   font-size: xx-large;
   font-weight: 900;
@@ -23,10 +53,17 @@ body {
 #ans {
   size: 50%;
 }
+#level {
+  height: 120px;
+  color: black;
+  font-style: italic;
+  line-height: 65px;
+  justify-content: center;
+}
 #display {
   margin-left: 5%;
   align-items: center;
-  color: black;
+  color: rgb(42, 77, 14);
   /* text-align: center; */
   line-height: 65px;
   font-size: larger;
@@ -40,11 +77,12 @@ body {
 .button {
   width: 112px;
   height: 58px;
-  margin-left: 50%;
-  margin-top: 10%;
+  margin-left: 45%;
+  margin-top: 5%;
+  color: white;
   margin-bottom: 10%;
-  border: solid 1px #9ac404;
-  background-color: #d9f14cdc;
+  border: solid 1px black;
+  background-color: rgb(95, 26, 26);
   text-align: center;
   border-radius: 25%;
   line-height: 58px;
@@ -52,7 +90,20 @@ body {
 }
 .highlight {
   transform: translateY(1px);
-  box-shadow: 0 15px rgb(3, 120, 216);
+  box-shadow: 0 15px black;
+}
+#words {
+  margin-top: 5%;
+  margin-left: 20%;
+  width: 150px;
+  height: 50px;
+  background-color: aquamarine;
+  visibility: hidden;
+}
+#check {
+  width: 100px;
+  height: 30px;
+  margin-left: 6rem;
 }
 #dora {
   height: 150px;
@@ -63,7 +114,7 @@ body {
   width: fit-content;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 70%;
+  top: 80%;
 }
 #anim.active {
   display: flex;

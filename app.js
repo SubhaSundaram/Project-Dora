@@ -1,4 +1,16 @@
 // let images = []
+function generateRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16)
+}
+function changeBackgroundColor() {
+  let colorBg = document.getElementById('color-overlay')
+  colorBg.style.backgroundColor = generateRandomColor()
+}
+function checkBg() {
+  generateRandomColor()
+  changeBackgroundColor()
+}
+setInterval(checkBg, 200)
 let start = document.getElementById('start')
 let level
 let rightans = 0
@@ -31,7 +43,9 @@ function displayArray() {
 }
 function displayImage() {
   document.getElementById('start').style.display = 'none'
-  document.body.style.backgroundImage = "url('./Nature.jpg')"
+  document.getElementById('level').innerHTML =
+    "To cross this level, you have to remember the images displayed and select the right ones.. And just click on 'NEXT'.... Let's begin ! "
+  document.body.style.backgroundImage = "url('')"
   let imgs
   level = 1
   n++
@@ -76,7 +90,6 @@ function check() {
   if (level == 1) {
     let x = compare(selectedImg, checkimg) //comparing the random images with the selected one
     if (x == true) {
-      // anim.classList.add('.active')
       displayImage()
       console.log('Images are same')
     } else {
@@ -113,16 +126,19 @@ function compare(arr1, arr2) {
 }
 //LEVEL 2
 function quizCheck() {
-  document.body.style.backgroundImage = "url('./dora-quiz.jpg')"
+  document.body.style.backgroundImage =
+    "url('https://www.mobygames.com/images/shots/l/231149-dora-the-explorer-backpack-adventure-windows-screenshot-ooh.jpg')"
   anim.classList.remove('active')
+  document.body.style.width = '100vw'
+  document.body.style.height = '100vh'
+  document.getElementById('level').innerHTML =
+    'Hi... Iam Troll who lives under this bridge... You  have to answer 3 questions to pass this level.... Here you go ! '
+
   let q = Math.ceil(Math.random() * 10)
-  // console.log('Welcome to LEVEL 2')
-  // document.getElementById('full').innerHTML = 'Welcome to Level 2'
   axios
     .get('https://opentdb.com/api.php?amount=10&category=19&difficulty=easy')
     .then((res) => {
       console.log(res.data.results[q].question)
-      // document.getElementById('full').innerHTML += res.data.results[1].question
       let values = res.data.results[q].incorrect_answers
       values.push(res.data.results[q].correct_answer)
       console.log(values)
@@ -164,7 +180,6 @@ function checkAnswer(correctanswer) {
         level = 2
         return
       }
-      document.getElementById('full').innerHTML = 'Level 2 completed'
     })
   })
 }
@@ -172,15 +187,28 @@ function checkAnswer(correctanswer) {
 //LEVEL 3
 function spellCheck() {
   document.getElementById('full').innerHTML = ''
-  document.body.style.backgroundImage = "url('./pexels-pixabay-259915.jpg')"
+  document.getElementById('quiz').innerHTML = ''
+  document.getElementById('words').style.visibility = 'inherit'
+  document.body.style.backgroundImage =
+    "url('https://lh5.googleusercontent.com/proxy/v7GnSHOY_kjREc8RzhP0c-ses-sc6ec1oyQR6xHdJqWNYUQ1Fi2rFyui0I3wC0hfmpxTq1ZR--eF9E6BxcL94EztW07tzV0bI0vkrAPD72njZZ8=s0-d')"
+  document.body.style.width = '100vw'
+  document.body.style.height = '100vh'
   anim.classList.remove('active')
-  document.getElementById('quiz').innerHTML =
+  document.getElementById('level').innerHTML =
     'Welcome to Level 3..... Find the correct word for the scrambled word displayd here.. A clue for you-  They are friends of Dora'
   level = 3
-
-  var WORDS = ['Diego', 'Benny', 'Tico', 'Backpack']
-  var SCRAMBLED = ['egiod', 'ynenb', 'oict', 'pbakckca']
-
+  // let quiz = document.getElementById('quiz')
+  var WORDS = ['diego', 'benny', 'tico', 'backpack', 'swiper', 'boots', 'isa']
+  var SCRAMBLED = [
+    'egiod',
+    'ynenb',
+    'oict',
+    'bkacpkac',
+    'wispre',
+    'toosb',
+    'sia',
+  ]
+  let scramble = document.getElementById('scramble')
   var randomNumber = Math.floor(Math.random() * WORDS.length)
   var randomWord = SCRAMBLED[randomNumber]
   let words = document.getElementById('words')
@@ -190,12 +218,14 @@ function spellCheck() {
   var input = document.createElement('input')
   input.setAttribute('type', 'text')
   input.setAttribute('id', 'ans')
-  let button = document.createElement('button')
-  button.innerHTML = 'Check'
-  full.appendChild(input)
-  full.appendChild(button)
+  input.setAttribute('class', 'input-field')
+  let check = document.createElement('button')
+  check.innerHTML = 'Check'
+  check.setAttribute('id', 'check')
+  scramble.appendChild(input)
+  scramble.appendChild(check)
 
-  button.onclick = function () {
+  check.onclick = function () {
     let inputVal = document.getElementById('ans').value
     // let inputVal = input.value
     console.log(inputVal)
@@ -213,10 +243,11 @@ function spellCheck() {
     else {
       if (sameWord >= 3) {
         console.log('Level 3 completed')
-        document.getElementById('quiz').innerHTML =
+        document.getElementById('level').innerHTML =
           'Hurray....!! We reached Home .... Thank you friends for helping me all along the way'
         anim.classList.add('active')
-        document.body.style.backgroundImage = "url('./Dora-final.jpg')"
+        document.body.style.backgroundImage =
+          "url('./dora-1625122935221-5612.jpg')"
         return
       } else {
         levelFail()
@@ -229,10 +260,14 @@ function spellCheck() {
 function levelFail() {
   let doraimg = document.getElementById('dora')
   doraimg.setAttribute('src', '')
-  // let img = './dora-caught.png'
+  anim.style.display = 'none'
   document.getElementById('full').innerHTML = ''
   document.getElementById('quiz').innerHTML = ''
-  document.getElementById('words').innerHTML = ''
+  document.getElementById('words').style.visibility = 'hidden'
+  document.getElementById('scramble').innerHTML = ''
+  document.getElementById('level').innerHTML = 'Oh You lost it.....!!'
   document.getElementById('button').style.display = 'none'
   document.body.style.backgroundImage = "url('./dora-caught.png')"
+  document.body.style.width = '100vw'
+  document.body.style.height = '100vh'
 }
